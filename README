@@ -1,0 +1,73 @@
+======== COMPILATION AND INSTALLATION ===========
+ -- compilation and installation
+Customize the file ./cs.sh : please provide the source directory SOURCE_DIR and the install directory SOT_ROOT
+Eventually, provide the boost path and the eigen path.
+
+Once done, run
+$ ./cs.sh pull
+$ ./cs.sh build
+
+  -- install robot-viewer.
+Robot viewer is a simple tool to visualize a scene involving a robot, written in Python
+
+The installation instruction are in https://github.com/laas/robot-viewer
+
+If you choose to install via apt-get, be aware that it may raise the following error:
+
+SyntaxError: ('invalid syntax', ('/usr/lib/pymodules/python2.6/robotviewer/legacy.py', 19, 31, 'def parse_config(self, config)\n'))
+
+Tough it has no impact on the execution.
+
+After installation, a patch needs to be applied
+sudo cp robot_viewer/patch/kinematics.py  /usr/lib/pymodules/python2.6/robotviewer/kinematics.py
+
+robotviewer will take informations from the ~/.robotviewer folder.
+To create it, you can run
+$robotviewer
+This will creates symbolic links in ~/.robotviewer/
+
+please customize the file robotviewer/config and copy it as ~/.robotviewer/config
+
+
+
+Complete PYTHONPATH and LD_LIBRARY_PATH
+Simplest solution consists in adding this to your .bashrc
+Otherwise, add those lines in the second console (see below).
+
+# assuming that SOT_ROOT is defined.
+export PYTHONPATH=$SOT_ROOT/lib/python2.6/site-packages/
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SOT_ROOT/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SOT_ROOT/lib/plugin
+
+
+======== RUNNING THE SIMULATION =======
+
+
+In the first console, run
+$ robotviewer -s XML-RPC
+
+This will start the viewer in a new window. press h to toggle the help of the viewer
+
+In a second console, go the source directory  $SOURCE_PATH/Sot-Romeo/sot-dyninv/python
+Then run
+$ python -i ./kinesimple_romeo.py
+To run a simple kinematic simulation.
+
+
+run
+$ python -i ./dyn_romeo.py
+To run a simulation of the dynamic simulation
+
+Then type in the python output
+% go 
+to run 100 iteration of the control
+or
+% inc()
+to run 1 iter
+
+
+
+
+
+
