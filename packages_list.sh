@@ -26,6 +26,10 @@ BuildHandling abstract-robot-dynamics;
 GitHandling   jrl-dynamics https://github.com/jrl-umi3218           master
 BuildHandling jrl-dynamics;
 
+# Install jrl-walkgen: generation of walk pattern
+GitHandling   jrl-walkgen https://github.com/jrl-umi3218           master
+BuildHandling jrl-walkgen ;
+
 # Install dynamic-graph: graph structure for entities and signals
 GitHandling   dynamic-graph https://github.com/jrl-umi3218           master
 BuildHandling dynamic-graph;
@@ -49,5 +53,9 @@ BuildHandling soth;
 # Install sot-dyninv: implementation of the inverse kinematics and dynamics
 GitHandling   sot-dyninv https://github.com/laas      topic/no_hard_coded_path
 BuildHandling sot-dyninv;
+
+# Install sot-pattern-generator
+GitHandling   sot-pattern-generator https://github.com/jrl-umi3218/      "topic/toes"
+BuildHandling sot-pattern-generator;
 
 
