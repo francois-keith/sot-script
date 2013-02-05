@@ -62,7 +62,7 @@ GitHandling   soth  https://github.com/laas           master
 BuildHandling soth;
 
 # Install sot-dyninv: implementation of the inverse kinematics and dynamics
-GitHandling   sot-dyninv https://github.com/laas      topic/no_hard_coded_path
+GitHandling   sot-dyninv https://github.com/laas      master
 BuildHandling sot-dyninv;
 
 # Install sot-pattern-generator
