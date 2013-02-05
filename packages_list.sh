@@ -3,6 +3,17 @@
 . ./common_sot.sh
 
 # Go to root.
+if ! [ -d ${SOURCE_DIR} ]; then 
+  mkdir -p ${SOURCE_DIR}
+
+  #check if the folder has been created
+  if ! [ -d ${SOURCE_DIR} ]; then 
+    echo 'Unable to create repository ' ${SOURCE_DIR}
+    exit -1
+  fi
+fi
+
+
 cd ${SOURCE_DIR}
 echo ${SOURCE_DIR}
 
