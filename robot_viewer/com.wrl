@@ -1,0 +1,9 @@
+Shape {
+  geometry Sphere { radius 0.025 } 
+  appearance Appearance {
+    material Material {
+      diffuseColor 0 1 0
+    }
+  }
+}
+
