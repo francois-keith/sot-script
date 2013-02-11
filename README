@@ -51,12 +51,11 @@ This will start the viewer in a new window. press h to toggle the help of the vi
 
 In a second console, go the source directory  $SOURCE_PATH/Sot-Romeo/sot-dyninv/python
 Then run
-$ python -i ./kinesimple_romeo.py
+$ python -i ./kineromeo.py
 To run a simple kinematic simulation.
 
-
 run
-$ python -i ./dyn_romeo.py
+$ python -i ./dynromeo.py
 To run a simulation of the dynamic simulation
 
 Then type in the python output
