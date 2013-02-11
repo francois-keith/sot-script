@@ -11,12 +11,12 @@ fi
 if [ -d '/C/Windows' ]; then
 	echo 'You are running under Windows'
 	export OS_is_windows=1
-	export OS_build_rep=wbuild
+	export OS_build_rep=_wbuild
 	export MAKE=nmake
 else
 	export OS_is_windows=0
 	export MAKE=make
-	export OS_build_rep=build
+	export OS_build_rep=_build
 fi
 
 
@@ -111,6 +111,7 @@ function diff_package()
 	else
 		PREV_PWD=`pwd`
 		cd $1
+		echo `pwd`
 		git diff
 		if [ -d cmake ]; then
 			cd cmake
@@ -310,34 +311,41 @@ function build_package()
 	echo
 	echo "--- build package "$1"  (building mode: "$2") ---"
 	echo
+
 	if ! [ -d $1 ];  then
 		echo '   The directory ' $1 ' does not exists ' 
 		exit -1
 	fi;
 
 	PREV_PWD=`pwd`
+
+  	# Creating the project *outside* the src repository
+	if ! [ -d ${SOURCE_DIR}/$OS_build_rep/ ];  then 
+		mkdir ${SOURCE_DIR}/$OS_build_rep/
+	fi
+	cd ${SOURCE_DIR}/$OS_build_rep/
 	
+	#creating the folder corresponding to the current project
+	if ! [ -d $1 ];  then mkdir $1; fi
     cd $1
     
-	if ! [ -d $OS_build_rep ];  then  
-		mkdir $OS_build_rep; 
-	fi; 	
-	cd $OS_build_rep;
-	
 	if ! [ -d $2 ];   then  mkdir $2;   fi;
 	cd $2;
-	
+
+	pwd
+
 	if [ $rmcache -eq 1 ]; then
 		echo 
 		echo "INFO: removing the cache"
 		rm -f CMakeCache.txt
 	fi
+	
 
 	if [ $OS_is_windows -eq 1 ]; then
 		cmake -G"NMake Makefiles" -DCMAKE_BUILD_TYPE=$2 -DCMAKE_INSTALL_PREFIX=${SOT_ROOT} -DSMALLMATRIX="jrl-mathtools" -DHRP2_MODEL_DIRECTORY=${HRP2_MODEL_DIRECTORY}  -DHRP2_CONFIG_DIRECTORY=${HRP2_CONFIG_DIRECTORY}   -DBoostNumericBindings_INCLUDE_DIR=${BOOST_SANDBOX} -DUSE_COLLISION=OFF -DGENERATE_DOC=${GENERATE_DOC} -DCXX_DISABLE_WERROR=1 ../..
 	    v=$?
 	else	
-		cmake -DCMAKE_BUILD_TYPE=$2 -DCMAKE_INSTALL_PREFIX=${SOT_ROOT} -DBOOST_LIBRARYDIR=/usr/lib/boost -DSMALLMATRIX="jrl-mathtools" -DEIGEN3_INCLUDE_DIR="${EIGEN3_INCLUDE_DIR}"  -DCXX_DISABLE_WERROR=1 ${EXTRA_CMAKE_FLAGS} -DQPOASES_DIR=/home/keith/devel-src/solveur/qpOASES-3.0beta/ ../..
+		cmake -DCMAKE_BUILD_TYPE=$2 -DCMAKE_INSTALL_PREFIX=${SOT_ROOT} -DSMALLMATRIX="jrl-mathtools" -DCXX_DISABLE_WERROR=1 ${EXTRA_CMAKE_FLAGS} ${SOURCE_DIR}/$1
 		v=$?
     fi
 
@@ -424,9 +432,9 @@ function ebuild() {
     
     PREV_PWD=`pwd`
 
-  if ! [ -d $1 ];  then
-    echo '   The directory ' $1 ' does not exists ' 
-  else
+	if ! [ -d $1 ];  then
+		echo '   The directory ' $1 ' does not exists ' 
+	else
   	# Creating the project *outside* the src repository
 	if ! [ -d ${SOURCE_DIR}/${ECLIPSE_FOLDER}/ ];  then 
 		mkdir ${SOURCE_DIR}/${ECLIPSE_FOLDER}/
