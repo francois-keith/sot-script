@@ -54,7 +54,7 @@ GitHandling   sot-core https://github.com/jrl-umi3218           master
 BuildHandling sot-core;
 
 # Install sot-dynamic: bridge the sot with jrl-dynamics: integrates humanoid robot
-GitHandling   sot-dynamic https://github.com/jrl-umi3218        topic/optional_hrp2
+GitHandling   sot-dynamic https://github.com/jrl-umi3218        topic/master
 BuildHandling sot-dynamic;
 
 # Install soth: hierarchical solver
@@ -66,7 +66,7 @@ GitHandling   sot-dyninv https://github.com/laas      master
 BuildHandling sot-dyninv;
 
 # Install sot-pattern-generator
-GitHandling   sot-pattern-generator https://github.com/jrl-umi3218/      "topic/toes"
+GitHandling   sot-pattern-generator https://github.com/jrl-umi3218/      "topic/python"
 BuildHandling sot-pattern-generator;
 
 
