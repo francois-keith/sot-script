@@ -32,7 +32,11 @@ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$SOT_ROOT/lib/pkgconfig
 
 
 # Indicate the path to python and sphinx if needed.
-export EXTRA_CMAKE_FLAGS="-DPYTHON_EXECUTABLE=/usr/bin/python -DPYTHON_LIBRARY=/usr/lib/libpython2.6.so -DPYTHON_INCLUDE_DIRS=/usr/include"
+#for python 2.6
+# export EXTRA_CMAKE_FLAGS="-DPYTHON_EXECUTABLE=/usr/bin/python   -DPYTHON_LIBRARY=/usr/lib/libpython2.6.so -DPYTHON_INCLUDE_DIRS=/usr/include  -DSPHINX_BUILD=/usr/bin/sphinx-build"
+
+#for python 2.7
+#export EXTRA_CMAKE_FLAGS="-DPYTHON_EXECUTABLE=/usr/bin/python2.7 -DPYTHON_LIBRARY=/usr/lib/libpython2.7.so -DPYTHON_INCLUDE_DIRS=/usr/include -DSPHINX_BUILD=/usr/bin/sphinx-build"
 
 
 # -----------------------------------------------------
