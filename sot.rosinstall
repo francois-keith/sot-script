@@ -1,0 +1,12 @@
+- git:
+    uri: git://github.com/laas/redundant_manipulator_control.git
+    local-name: sot-ros/redundant_manipulator_control
+    version: master
+- git:
+    uri: git://github.com/laas/humanoid_walk.git
+    local-name: sot-ros/humanoid_walk
+    version: master
+- git:
+    uri: git://github.com/laas/romeo
+    local-name: sot-ros/romeo
+    version: master
