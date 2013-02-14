@@ -25,7 +25,7 @@ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$SOT_ROOT/lib/pkgconfig
 # export BOOST_ROOT=/opt/boost/boost_1_40_0/
 
 # define the path to eigen if not automatically found
-# export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:"/home/${user}/devel/eigen/lib/pkgconfig"
+# export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:"/home/${user}/devel/eigen/share/pkgconfig"
 
 # pkg-config dependencies
 

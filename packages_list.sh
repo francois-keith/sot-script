@@ -69,4 +69,7 @@ BuildHandling sot-dyninv;
 GitHandling   sot-pattern-generator https://github.com/jrl-umi3218/      "topic/python"
 BuildHandling sot-pattern-generator;
 
+# Install sot-romeo
+GitHandling   sot-romeo https://github.com/jrl-umi3218/      "master"
+BuildHandling sot-romeo ;
 
