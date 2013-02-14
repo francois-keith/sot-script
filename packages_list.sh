@@ -54,7 +54,7 @@ GitHandling   sot-core https://github.com/jrl-umi3218           master
 BuildHandling sot-core;
 
 # Install sot-dynamic: bridge the sot with jrl-dynamics: integrates humanoid robot
-GitHandling   sot-dynamic https://github.com/jrl-umi3218        topic/master
+GitHandling   sot-dynamic https://github.com/jrl-umi3218        master
 BuildHandling sot-dynamic;
 
 # Install soth: hierarchical solver
