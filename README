@@ -1,72 +1,63 @@
-======== COMPILATION AND INSTALLATION ===========
- -- compilation and installation
-Customize the file ./cs.sh : please provide the source directory SOURCE_DIR and the install directory SOT_ROOT
-Eventually, provide the boost path and the eigen path.
+====== Stack of Tasks tutorial ======
 
-Once done, run
-$ ./cs.sh pull
-$ ./cs.sh build
+=== Installation ===
+== Installation of the sources ==
+External dependencies.
 
-  -- install robot-viewer.
-Robot viewer is a simple tool to visualize a scene involving a robot, written in Python
+  * boost ( >= 1.40.0)
+  * eigen ( >= 3.0)
+  * python( 2.6 or 2.7)
 
-The installation instruction are in https://github.com/laas/robot-viewer
+Most of the sources of the stack of tasks are SoT independent.
+To get the latest version of the sources, please use the following script:
 
-If you choose to install via apt-get, be aware that it may raise the following error:
+http://github.com/francois-keith/sot-script
 
-SyntaxError: ('invalid syntax', ('/usr/lib/pymodules/python2.6/robotviewer/legacy.py', 19, 31, 'def parse_config(self, config)\n'))
+This folder provides three scripts installing all required debian packages for ubuntu 10 and ubuntu 12, 
+namely the boost and python dependencies (unix-dependencies-os_version.sh).
+Also, for ubuntu 10.04, a script is provided to get and compile eigen3.1.2
 
-Tough it has no impact on the execution.
+Once those libraries installed, you can get and compile the sot sources:
+edit the ./cs_sot.sh file and fill the missing information
 
-After installation, a patch needs to be applied
-sudo cp robot_viewer/patch/kinematics.py  /usr/lib/pymodules/python2.6/robotviewer/kinematics.py
+  export SOURCE_DIR=   # where the sources will be downloaded and compiled
+  export SOT_ROOT=     # where the sources will be installed
 
-robotviewer will take informations from the ~/.robotviewer folder.
-To create it, you can run
-$robotviewer
-This will creates symbolic links in ~/.robotviewer/
-
-please customize the file robotviewer/config and copy it as ~/.robotviewer/config
-
-
-
-Complete PYTHONPATH and LD_LIBRARY_PATH
-Simplest solution consists in adding this to your .bashrc
-Otherwise, add those lines in the second console (see below).
-
-# assuming that SOT_ROOT is defined.
-export PYTHONPATH=$SOT_ROOT/lib/python2.6/site-packages/
-
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SOT_ROOT/lib
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SOT_ROOT/lib/plugin
-
-
-======== RUNNING THE SIMULATION =======
-
-
-In the first console, run
-$ robotviewer -s XML-RPC
-
-This will start the viewer in a new window. press h to toggle the help of the viewer
-
-In a second console, go the source directory  $SOURCE_PATH/Sot-Romeo/sot-dyninv/python
+(Source repository and install path).
 Then run
-$ python -i ./kineromeo.py
-To run a simple kinematic simulation.
+  ./cs_sot.sh pull
+  ./cs_sot.sh build # to build all the sources. Use the option rmcache to recreate the cmake cache file
 
-run
-$ python -i ./dynromeo.py
-To run a simulation of the dynamic simulation
+== Bridge ROS / SoT ==
+The ros packages required are detailed in the sot.rosinstall file. Get the sources using:
+  rosinstall ~/devel-src/SoT/ sot.rosinstall /opt/ros/ros_version/
+then, compile the two following packages:
+  rosmake romeo_description 
+  rosmake dynamic_graph_bridge
 
-Then type in the python output
-% go 
-to run 100 iteration of the control
-or
-% inc()
-to run 1 iter
+To compile dynamic_graph_bridge, you need 
+  * to have the package ros_realtime (get it using 
+  sudo apt-get install ros-version-ros-control
+  * to have SOT_ROOT/lib/pkgconfig in your PKG_CONFIG_PATH
 
+=== Execution ===
 
+== ROS viewer start ==
+In a first terminal, start roscore
+  roscore
 
+In a second terminal, choose the robot
+  rosparam set robot_description -t `rospack find romeo_description`/urdf/romeo_small.urdf``
+and redirect the state_publisher in the namespace dynamic_graph (used by the SoT)
+  ROS_NAMESPACE=dynamic_graph rosrun robot_state_publisher state_publisher
 
+In a third terminal, start rviz
+  rosrun rviz rviz
 
+== script execution ==
 
+In a fourth terminal, start the python script
+  cd ${SOURCE_DIR}/python/ros
+  python -i ros-kineromeo.py
+  > go
+ 
