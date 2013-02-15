@@ -50,7 +50,7 @@ GitHandling   dynamic-graph-python https://github.com/jrl-umi3218           mast
 BuildHandling dynamic-graph-python;
 
 # Install sot-core: defines basic entities: feature, task, gain...
-GitHandling   sot-core https://github.com/jrl-umi3218           master
+GitHandling   sot-core https://github.com/jrl-umi3218           topic/sot-dyninv-binding
 BuildHandling sot-core;
 
 # Install sot-dynamic: bridge the sot with jrl-dynamics: integrates humanoid robot
