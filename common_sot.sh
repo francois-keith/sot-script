@@ -47,6 +47,7 @@ function pull_package()
 		
 		PREV_PWD=`pwd`
 		cd $1
+		git checkout $3
 		git pull
 		v=$?
 		if ! [ $v -eq 0 ];  then
