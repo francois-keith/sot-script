@@ -38,7 +38,7 @@ GitHandling   jrl-dynamics https://github.com/jrl-umi3218           master
 BuildHandling jrl-dynamics;
 
 # Install jrl-walkgen: generation of walk pattern
-GitHandling   jrl-walkgen https://github.com/jrl-umi3218           master
+GitHandling   jrl-walkgen https://github.com/jrl-umi3218           topic/rc-v3.1.4
 BuildHandling jrl-walkgen ;
 
 # Install dynamic-graph: graph structure for entities and signals
