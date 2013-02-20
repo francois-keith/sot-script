@@ -55,6 +55,7 @@ function pull_package()
 			cd $PREV_PWD
 			exit -1
 		fi
+		git submodule init
 		git submodule update
 		cd $PREV_PWD
 	else
