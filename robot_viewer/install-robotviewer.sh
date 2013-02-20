@@ -27,6 +27,10 @@ cd $currentDir
 if ! [ -d ~/.robotviewer/ ];  then
 	mkdir  ~/.robotviewer/
 fi;
+echo 'Please correct the path to the romeo robot in the file config'
+echo ' Replace SOT_ROOT by the corresponding absolute path.'
+read -p " Press [Enter] key to start editing the config file."
+vim config
 cp com.wrl  zmp.wrl ground.wrl config ~/.robotviewer/
 
 
