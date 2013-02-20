@@ -5,7 +5,7 @@ currentDir=`pwd`
 
 
 # Step 1. Installing simpleparse.
-cd ~/tmp/
+cd /tmp/
 
 # download simple parse from http://simpleparse.sourceforge.net/
 wget http://downloads.sourceforge.net/project/simpleparse/simpleparse/2.1.1a2/SimpleParse-2.1.1a2.tar.gz
