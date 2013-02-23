@@ -138,11 +138,7 @@ function tag_package()
 	else
 		PREV_PWD=`pwd`
 		cd $1
-		if [ $LETS_GO_PYTHON -eq 1 ]; then
-			git tag -f LWV_python
-		else
-			git tag -f LWV
-		fi
+		git tag -f LWV
 		cd $PREV_PWD
 	fi
 }
@@ -349,7 +345,7 @@ function build_package()
 	else	
 		cmake -DCMAKE_BUILD_TYPE=$2 -DCMAKE_INSTALL_PREFIX=${SOT_ROOT} -DSMALLMATRIX="jrl-mathtools" -DCXX_DISABLE_WERROR=1 ${EXTRA_CMAKE_FLAGS} ${SOURCE_DIR}/$1
 		v=$?
-    fi
+	fi
 
 	v=$?
 	if ! [ $v -eq 0 ];  then
