@@ -48,7 +48,7 @@ function pull_package()
 		PREV_PWD=`pwd`
 		cd $1
 		git checkout -f $3
-		git pull
+		# git pull
 		v=$?
 		if ! [ $v -eq 0 ];  then
 			echo "ERROR: Failure on pull " $1
