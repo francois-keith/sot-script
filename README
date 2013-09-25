@@ -1,63 +1,8 @@
-====== Stack of Tasks tutorial ======
+Thanks for you interest in the stack ot tasks software.
+This compilation script is now deprecated, you should rather use
+the following one:
 
-=== Installation ===
-== Installation of the sources ==
-External dependencies.
+https://github.com/stack-of-tasks/install-sot
 
-  * boost ( >= 1.40.0)
-  * eigen ( >= 3.0)
-  * python( 2.6 or 2.7)
-
-Most of the sources of the stack of tasks are SoT independent.
-To get the latest version of the sources, please use the following script:
-
-http://github.com/francois-keith/sot-script
-
-This folder provides three scripts installing all required debian packages for ubuntu 10 and ubuntu 12, 
-namely the boost and python dependencies (unix-dependencies-os_version.sh).
-Also, for ubuntu 10.04, a script is provided to get and compile eigen3.1.2
-
-Once those libraries installed, you can get and compile the sot sources:
-edit the ./cs_sot.sh file and fill the missing information
-
-  export SOURCE_DIR=   # where the sources will be downloaded and compiled
-  export SOT_ROOT=     # where the sources will be installed
-
-(Source repository and install path).
-Then run
-  ./cs_sot.sh pull
-  ./cs_sot.sh build # to build all the sources. Use the option rmcache to recreate the cmake cache file
-
-== Bridge ROS / SoT ==
-The ros packages required are detailed in the sot.rosinstall file. Get the sources using:
-  rosinstall ~/devel-src/SoT/ sot.rosinstall /opt/ros/ros_version/
-then, compile the two following packages:
-  rosmake romeo_description 
-  rosmake dynamic_graph_bridge
-
-To compile dynamic_graph_bridge, you need 
-  * to have the package ros_realtime (get it using 
-  sudo apt-get install ros-version-ros-control
-  * to have SOT_ROOT/lib/pkgconfig in your PKG_CONFIG_PATH
-
-=== Execution ===
-
-== ROS viewer start ==
-In a first terminal, start roscore
-  roscore
-
-In a second terminal, choose the robot
-  rosparam set robot_description -t `rospack find romeo_description`/urdf/romeo_small.urdf``
-and redirect the state_publisher in the namespace dynamic_graph (used by the SoT)
-  ROS_NAMESPACE=dynamic_graph rosrun robot_state_publisher state_publisher
-
-In a third terminal, start rviz
-  rosrun rviz rviz
-
-== script execution ==
-
-In a fourth terminal, start the python script
-  cd ${SOURCE_DIR}/python/ros
-  python -i ros-kineromeo.py
-  > go
- 
+This script allows you to keep the several packages up to date, 
+and allows you to bind it with ros electric, fuerte, groovy and hydro.
